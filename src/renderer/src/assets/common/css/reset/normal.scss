@@ -1,0 +1,707 @@
+/**
+* Project Normal Compatibility Section
+*/
+// @use '@/assets/common/css/color.scss' as *;
+// @use '@/assets/common/css/font.scss' as *;
+@use '../variables' as *;
+
+a {
+  color: $text-color-regular;
+  text-decoration: none;
+}
+
+.container .splitpanes {
+  --splitter-border-color: #eee;
+  --splitter-arrow-color: #2762cd;
+
+  .splitpanes__splitter {
+    &:hover {
+      background-color: $color-gray-eee;
+    }
+  }
+
+  .splitpanes__splitter__arrow {
+    &:hover {
+
+      &::before, &::after {
+        border-color: $color-primary !important;
+      }
+    }
+  }
+  .splitpanes__pane {
+    background-color: $color-white;
+  }
+}
+
+// Change the 'z-index' of the handle elments of the vue3-draggalbe-resizable component
+.vdr-container {
+  border: none !important;
+  
+  .vdr-handle {
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+  }
+  .vdr-handle-tl,
+  .vdr-handle-tm,
+  .vdr-handle-tr,
+  .vdr-handle-ml,
+  .vdr-handle-mr,
+  .vdr-handle-bl,
+  .vdr-handle-bm,
+  .vdr-handle-br {
+    z-index: 10;
+  }
+  .vdr-handle-tl {
+    top: -5px;
+    left: -5px;
+    cursor: nwse-resize;
+  }
+  .vdr-handle-tr {
+    top: -5px;
+    right: -5px;
+    cursor: nesw-resize;
+  }
+  .vdr-handle-tm {
+    top: -5px;
+    left: 5px;
+    width: calc(100% - 10px);
+    margin: 0;
+    cursor: ns-resize;
+  }
+  .vdr-handle-ml {
+    top: 5px;
+    left: -5px;
+    height: calc(100% - 10px);
+    margin: 0;
+    cursor: ew-resize;
+  }
+  .vdr-handle-mr {
+    top: 5px;
+    right: -5px;
+    height: calc(100% - 10px);
+    margin: 0;
+    cursor: ew-resize;
+  }
+  .vdr-handle-bl {
+    bottom: -5px;
+    left: -5px;
+    cursor: nesw-resize;
+  }
+  .vdr-handle-br {
+    right: -5px;
+    bottom: -5px;
+    cursor: nwse-resize;
+  }
+  .vdr-handle-bm {
+    bottom: -5px;
+    left: 5px;
+    width: calc(100% - 10px);
+    margin: 0;
+    cursor: ns-resize;
+  }
+}
+
+
+body .lx-icon {
+  font-size: $font-size-medium;
+}
+
+.global-loading {
+  .lx-loading-spinner .path {
+    stroke: $color-white;
+  }
+  .lx-loading-spinner .lx-loading-text {
+    color: $color-white;
+  }
+}
+
+.pane-container {
+  width: 100%;
+  height: 100%;
+  .pane-header {
+    padding: 0 10px;
+    line-height: 2em;
+    color: $color-white;
+    user-select: none;
+    background-color: $color-gray-ccc;
+    &.active {
+      background-color: $color-primary;
+    }
+  }
+  .pane-content {
+    height: calc(100% - 2em);
+    overflow-y: auto;
+  }
+}
+
+
+.custom-table {
+  box-shadow: 2px 2px 10px 0 rgb(102 102 102 / 5%);
+
+  .vxe-table--header-wrapper {
+    border-radius: 4px 4px 0 0;
+    .vxe-header--row {
+      background-color: $color-blue-2;
+
+      .vxe-header--column {
+        .vxe-cell--title {
+          font-weight: 600;
+          color: $color-blue-7;
+        }
+
+        .vxe-resizable.is--line::before {
+          background-color: $color-blue-7;
+        }
+
+        &:last-child {
+          .vxe-resizable.is--line::before {
+            display: none;
+          }
+        }
+
+        // 横向调整列宽 holder 样式，新的类名
+        .vxe-cell--col-resizable::before {
+          display: none;
+        }
+      }
+    }
+  }
+  .vxe-header--row {
+    .vxe-header--column {
+      .vxe-cell--col-resizable::before {
+        content: none;
+      }
+    }
+  }
+  .vxe-table--border-line,
+  .vxe-table--header-border-line {
+    display: none;
+  }
+
+  .vxe-table--render-default .vxe-body--row {
+    position: relative;
+    // height: 30px;
+    &.row--hover.row--checked > .vxe-body--column {
+      background-color: $color-blue-1;
+    }
+
+    &.row--current {
+      color: unset;
+      background-color: $color-blue-3;
+      // display: flex;
+      // justify-content: center;
+      // align-items: center;
+
+      .vxe-body--column:first-child:not(.col--last)::before {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        content: '';
+        border-left: 3px solid $color-blue-7;
+      }
+    }
+
+    &.row--hover:not(.row--current) {
+      background-color: $color-blue-1;
+    }
+  }
+  .vxe-table--render-default.border--default .vxe-header--column,
+  .vxe-table--render-default.border--default .vxe-body--column,
+  .vxe-table--render-default.border--default .vxe-footer--column,
+  .vxe-table--render-default.border--inner .vxe-header--column,
+  .vxe-table--render-default.border--inner .vxe-body--column,
+  .vxe-table--render-default.border--inner .vxe-footer--column {
+    background-image: none;
+    background-color: unset !important;
+  }
+
+  .vxe-cell {
+    padding: 0 10px;
+
+    // .vxe-cell--wrapper {
+    //   display: flex;
+    //   justify-content: center;
+    //   align-items: center;
+    // }
+  }
+
+  // 去掉固定列表头的滚动效果
+  .vxe-table--fixed-right-wrapper .vxe-header--row {
+    font-size: 0;
+
+    .vxe-cell {
+      font-size: $font-size-normal;
+
+      .vxe-cell--title {
+        line-height: 2em;
+      }
+    }
+  }
+
+  &.colorful-table .vxe-table--body .vxe-body--row {
+    // 表格颜色
+    &.custom_grid-body-row-1 {
+      background-color: $color-yellow-1;
+
+      &.row--current {
+        background-color: $color-yellow-3;
+
+        .vxe-body--column:first-child::before {
+          border-left: 3px solid $color-yellow-7;
+        }
+      }
+
+      &.row--hover:not(.row--current) {
+        background-color: $color-yellow-2;
+      }
+    }
+
+    &.custom_grid-body-row-2 {
+      background-color: $color-green-1;
+
+      &.row--current {
+        background-color: $color-green-3;
+
+        .vxe-body--column:first-child::before {
+          border-left: 3px solid $color-green-7;
+        }
+      }
+
+      &.row--hover:not(.row--current) {
+        background-color: $color-green-2;
+      }
+    }
+
+    &.custom_grid-body-row-3 {
+      background-color: $color-red-1;
+
+      &.row--current {
+        background-color: $color-red-3;
+
+        .vxe-body--column:first-child::before {
+          border-left: 3px solid $color-red-7;
+        }
+      }
+
+      &.row--hover:not(.row--current) {
+        background-color: $color-red-2;
+      }
+    }
+
+    &.custom_grid-body-row-4 {
+      background-color: $color-purple-1;
+
+      &.row--current {
+        background-color: $color-purple-3;
+
+        .vxe-body--column:first-child::before {
+          border-left: 3px solid $color-purple-7;
+        }
+      }
+
+      &.row--hover:not(.row--current) {
+        background-color: $color-purple-2;
+      }
+    }
+
+    &.custom_grid-body-row-5 {
+      background-color: $color-orange-1;
+
+      &.row--current {
+        background-color: $color-orange-3;
+
+        .vxe-body--column:first-child::before {
+          border-left: 3px solid $color-orange-7;
+        }
+      }
+
+      &.row--hover:not(.row--current) {
+        background-color: $color-orange-2;
+      }
+    }
+
+    &.custom_grid-body-row-6 {
+      background-color: $color-skyblue-1;
+
+      &.row--current {
+        background-color: $color-skyblue-3;
+
+        .vxe-body--column:first-child::before {
+          border-left: 3px solid $color-skyblue-7;
+        }
+      }
+
+      &.row--hover:not(.row--current) {
+        background-color: $color-skyblue-2;
+      }
+    }
+  }
+
+  &.line-table {
+    .vxe-table--header .vxe-header--row {
+      &:first-child {
+        .vxe-header--column {
+          border-top: 1px solid $color-blue-3;
+
+          &:first-child {
+            border-radius: 4px 0 0 0;
+          }
+        }
+
+        & > *:last-child {
+          border-radius: 0 4px 0 0;
+        }
+
+        .vxe-header--gutter {
+          position: relative;
+          border-top: 1px solid $color-blue-3;
+        }
+      }
+
+      .vxe-header--column {
+        position: relative;
+
+        .vxe-resizable.is--line {
+          &::before {
+            display: none;
+          }
+        }
+        border-bottom: 1px solid $color-blue-3;
+        border-left: 1px solid $color-blue-3;
+      }
+
+      .vxe-header--gutter {
+        position: relative;
+        border-bottom: 1px solid $color-blue-3;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: -1px;
+          top: 0;
+          bottom: 0;
+          border-left: 1px solid $color-blue-3;
+        }
+      }
+    }
+    .vxe-table--body .vxe-body--row {
+      .vxe-body--column {
+        border-left: 1px solid $color-blue-3;
+        border-bottom: 1px solid $color-blue-3;
+
+        &:last-child {
+          border-right: 1px solid $color-blue-3;
+        }
+      }
+    }
+
+    .vxe-table--scroll-y-virtual {
+      .vxe-table--scroll-y-wrapper::after,
+      .vxe-table--scroll-y-top-corner::before,
+      .vxe-table--scroll-y-bottom-corner,
+      .vxe-table--scroll-y-bottom-corner::before {
+        border-color: $color-blue-3;
+      }
+    }
+    .vxe-table--scroll-x-virtual {
+      .vxe-table--scroll-x-wrapper::after,
+      .vxe-table--scroll-x-right-corner::before {
+        border-color: $color-blue-3;
+      }
+    }
+
+    .vxe-table--border-line,
+    .vxe-table--header-border-line {
+      display: unset;
+      border-color: $color-blue-3;
+    }
+  }
+}
+
+
+.custom-collapse {
+  border: 0;
+  .lx-collapse-item {
+    margin-bottom: 10px;
+    &:last-child {
+      margin: 0;
+    }
+    .lx-collapse-item__header {
+      position: relative;
+      width: 100%;
+
+      // width: calc(100% - 50px);
+
+      font-weight: bold;
+      border-bottom: 1px solid $color-gray-ccc;
+    }
+    .lx-collapse-item__wrap {
+      border: 0;
+      .lx-collapse-item__content {
+        padding: 10px 0 0 15px;
+      }
+    }
+  }
+}
+
+.custom-tabs {
+  border: 1px solid $color-gray-ccc;
+  > .lx-tabs__header {
+    background-color: $color-gray-eee;
+    border-bottom: none;
+  }
+  .lx-tabs__header .lx-tabs__item {
+    font-weight: 600;
+    border: none;
+  }
+}
+
+// Sortable
+.custom-drag-ghost {
+  padding: 8px 15px;
+  font-size: $font-size-normal;
+  color: $color-white;
+  background-color: $color-auxiliary;
+}
+
+.custom-list {
+  display: flex;
+  flex-direction: column;
+  min-width: fit-content;
+  height: 100%;
+  & > * {
+    box-sizing: border-box;
+  }
+  .custom-list-header {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    padding: 0 1.5em;
+    background-color: $color-white;
+    .custom-list-header-left {
+      flex: 1;
+      text-align: left;
+    }
+    .custom-list-header-right {
+      flex: 1;
+      text-align: right;
+    }
+    .custom-list-toolBar-btn {
+      display: inline-flex;
+      align-items: center;
+      width: 2em;
+      height: 2em;
+      color: $color-auxiliary;
+      border: none;
+      & + .custom-list-toolBar-btn {
+        margin-left: 5px;
+      }
+    }
+  }
+  .custom-list-body {
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    text-align: center;
+    &:not(:first-child) {
+      margin-top: 5px;
+    }
+    .custom-list-thead {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      font-size: $font-size-normal;
+      font-weight: 700;
+      line-height: 2.5em;
+      color: $color-blue-7;
+      text-align: center;
+      background-color: $color-blue-2;
+    }
+    .custom-list-tbody {
+      position: relative;
+      flex: 1 1 0;
+      overflow-y: auto;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      &.operable-item {
+        .custom-list-item {
+          cursor: pointer;
+          &.custom-list-item-checked {
+            background: linear-gradient(90deg, $color-blue-3 100%, $color-blue-2 0%);
+            &::before {
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              width: 4px;
+              content: '';
+              background-color: $color-auxiliary;
+            }
+          }
+        }
+        .custom-list-item-actived {
+          background-color: $color-blue-1;
+        }
+      }
+      .custom-list-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        line-height: 2.5em;
+        &:not(:last-child)::after {
+          position: absolute;
+          right: 50px;
+          bottom: 0;
+          left: 50px;
+          height: 0;
+          content: '';
+          border-bottom: 1px solid $color-gray-eee;
+          transform: translateY(50%);
+        }
+        &:not(.custom-list-item-actived, .custom-list-item-checked):hover {
+          // background-color: $color-fafcff;
+        }
+        .custom-list-item-elInput {
+          width: 90%;
+          max-width: 200px;
+          height: 2em;
+          .lx-input__wrapper {
+            .lx-input__inner {
+              height: 2em;
+            }
+          }
+        }
+      }
+      .custom-list-empty {
+        position: absolute;
+        top: 30px;
+        right: 0;
+        left: 0;
+        z-index: 0;
+        height: calc(100% - 30px);
+        font-size: $font-size-medium;
+        line-height: 15em;
+        text-align: center;
+      }
+    }
+  }
+  .custom-list-td-seq {
+    flex: 0 0 100px;
+  }
+}
+
+.custom-sortable {
+  .custom-draging {
+    color: $color-white;
+    background-color: $color-auxiliary;
+    opacity: 0.5;
+  }
+  .custom-ghost {
+    color: $color-white;
+    background-color: $color-auxiliary;
+    box-shadow: 0 5px 5px 0 $color-gray-ccc;
+  }
+}
+
+.coating-project-result-tab-container {
+  height: 100%;
+
+  // display: flex;
+  // flex-direction: column;
+  .lx-tabs__content {
+    flex: 1;
+    .lx-tab-pane {
+      height: 100%;
+    }
+    .table-tab {
+      height: 100%;
+      padding: 8px;
+      .result-table {
+        .vxe-table .vxe-table--header-wrapper {
+          background-color: $color-blue-2;
+          .vxe-header--row .vxe-cell--title {
+            font-weight: 600;
+            color: $color-primary;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// settings窗口中输入框输入靠右显示
+.optics-settings-window,
+.detector-settings-window,
+.source-configuration-window {
+  .lx-input__inner:not(
+      .lx-select .lx-input__inner,
+      .lx-cascader .lx-input__inner,
+      [placeholder='Search']
+    ) {
+    text-align: right;
+  }
+  .vxe-input--inner:not(.vxe-select .vxe-input--inner) {
+    text-align: right;
+  }
+}
+
+// coatingProject 项目中的vxe-grid样式单独设置
+.custom-coating-table {
+  box-shadow: 2px 2px 10px 0 rgb(102 102 102 / 5%);
+  .vxe-table--header-wrapper {
+    color: $color-blue-7;
+    background-color: $color-blue-2;
+    border-radius: 4px 4px 0 0;
+    .vxe-header--row {
+      height: 28px;
+      background-color: $color-blue-2;
+      .vxe-cell--title {
+        font-weight: 600;
+        color: $color-blue-7;
+      }
+    }
+  }
+  .vxe-table--border-line,
+  .vxe-table--header-border-line {
+    display: none;
+  }
+  .vxe-table--render-default.border--default .vxe-header--column,
+  .vxe-table--render-default.border--default .vxe-body--column,
+  .vxe-table--render-default.border--default .vxe-footer--column,
+  .vxe-table--render-default.border--inner .vxe-header--column,
+  .vxe-table--render-default.border--inner .vxe-body--column,
+  .vxe-table--render-default.border--inner .vxe-footer--column {
+    background-image: none;
+  }
+  .vxe-table--body {
+    .vxe-body--row {
+      position: relative;
+      // height: 30px;
+      cursor: pointer;
+      &.row--hover {
+        background-color: $color-blue-1;
+      }
+      &:last-child {
+        border-radius: 0 4px 4px 0;
+        .vxe-body--column {
+          border-bottom: none;
+        }
+      }
+      .vxe-body--column {
+        border-right: 1px solid $color-blue-2;
+        border-bottom: 1px solid $color-blue-2;
+        &:last-child {
+          padding-right: 10px;
+          border-right: none;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,351 @@
+@use 'sass:map';
+@use 'sass:color';
+
+$color: () !default;
+$color: map.deep-merge(
+  (
+    'primary': (
+      'base': #0F4EAB,
+    ),
+    'auxiliary': (
+      'base': #1D6BD1,
+    ),
+    'success': (
+      'base': #67c23a
+    ),
+    'warning': (
+      'base': #e6a23c
+    ),
+    'error': (
+      'base': #e63c3c
+    ),
+    'danger': (
+      'base': #e63c3c
+    ),
+
+    'black': (
+      'base': #000000,
+      'main': #172231
+    ),
+    'gray': (
+      'base': #999999,
+      'ccc': #cccccc,
+      '999': #999999,
+      '666': #666666,
+      'eee': #eeeeee,
+      'f8f8f8': #f8f8f8,
+    ),
+    'white': (
+      'base': #ffffff
+    ),
+    'blue': (
+      'c-1': #F0F9FF,
+      'c-2': #C7E7FF,
+      'c-3': #99CBF7,
+      'c-4': #6CABEB,
+      'c-5': #438BDE,
+      'c-6': #1D6BD1,
+      'c-7': #0F4EAB,
+      'c-8': #053485,
+      'c-9': #001F5E,
+      'c-10': #001138,
+    ),
+    'red': (
+      'c-1': #fff2f0,
+      'c-2': #ffcec7,
+      'c-3': #f7a399,
+      'c-4': #eb746c,
+      'c-5': #de4843,
+      'c-6': #d11d1d,
+      'c-7': #ab0f15,
+      'c-8': #85050e,
+      'c-9': #5e0009,
+      'c-10': #380007,
+    ),
+    'green': (
+      'c-1': #f1ffe6,
+      'c-2': #c0f59d,
+      'c-3': #9ce86f,
+      'c-4': #78db46,
+      'c-5': #55cf21,
+      'c-6': #34c200,
+      'c-7': #249c00,
+      'c-8': #177500,
+      'c-9': #0d4f00,
+      'c-10': #052900,
+    ),
+    'orange': (
+      'c-1': #fff9f0,
+      'c-2': #ffe6c7,
+      'c-3': #f7ca99,
+      'c-4': #eba96c,
+      'c-5': #de8843,
+      'c-6': #d1681d,
+      'c-7': #ab4b0f,
+      'c-8': #853205,
+      'c-9': #5e1e00,
+      'c-10': #381000,
+    ),
+    'purple': (
+      'c-1': #f9f0ff,
+      'c-2': #e8c7ff,
+      'c-3': #cd99f7,
+      'c-4': #ad6ceb,
+      'c-5': #8e43de,
+      'c-6': #6e1dd1,
+      'c-7': #500fab,
+      'c-8': #360585,
+      'c-9': #21005e,
+      'c-10': #120038,
+    ),
+    'yellow': (
+      'c-1': #fffef0,
+      'c-2': #fffac7,
+      'c-3': #f7ec99,
+      'c-4': #ebd86c,
+      'c-5': #dec143,
+      'c-6': #d1aa1d,
+      'c-7': #ab840f,
+      'c-8': #856105,
+      'c-9': #5e4000,
+      'c-10': #382400,
+    ),
+    'skyblue': (
+      'c-1': #f0fdff,
+      'c-2': #c7f7ff,
+      'c-3': #99e6f7,
+      'c-4': #6ccfeb,
+      'c-5': #43b7de,
+      'c-6': #1d9ed1,
+      'c-7': #0f7aab,
+      'c-8': #055885,
+      'c-9': #003a5e,
+      'c-10': #002138,
+    )
+  ),
+  $color
+);
+$color-primary: map.get($color, 'primary', 'base') !default;
+$color-auxiliary: map.get($color, 'auxiliary', 'base') !default;
+$color-success: map.get($color, 'success', 'base') !default;
+$color-warning: map.get($color, 'warning', 'base') !default;
+$color-error: map.get($color, 'error', 'base') !default;
+$color-danger: map.get($color, 'danger', 'base') !default;
+$color-black: map.get($color, 'black', 'base') !default;
+$color-black-main: map.get($color, 'black', 'main') !default;
+$color-gray: map.get($color, 'gray', 'base') !default;
+$color-gray-ccc: map.get($color, 'gray', 'ccc') !default;
+$color-gray-999: map.get($color, 'gray', '999') !default;
+$color-gray-666: map.get($color, 'gray', '666') !default;
+$color-gray-eee: map.get($color, 'gray', 'eee') !default;
+$color-gray-f8f8f8: map.get($color, 'gray', 'f8f8f8') !default;
+$color-white: map.get($color, 'white', 'base') !default;
+
+$color-blue-l-1: color.scale($color-primary, $lightness: 15%);
+$color-blue-l-2: color.scale($color-primary, $lightness: 30%);
+$color-blue-l-3: color.scale($color-primary, $lightness: 45%);
+$color-blue-l-4: color.scale($color-primary, $lightness: 60%);
+$color-blue-l-5: color.scale($color-primary, $lightness: 75%);
+$color-blue-d-1: color.scale($color-primary, $lightness: -15%);
+$color-blue-d-2: color.scale($color-primary, $lightness: -30%);
+$color-blue-d-3: color.scale($color-primary, $lightness: -45%);
+$color-blue-d-4: color.scale($color-primary, $lightness: -60%);
+$color-blue-d-5: color.scale($color-primary, $lightness: -75%);
+
+$color-red-1: map.get($color, 'red', 'c-1') !important;
+$color-red-2: map.get($color, 'red', 'c-2') !important;
+$color-red-3: map.get($color, 'red', 'c-3') !important;
+$color-red-4: map.get($color, 'red', 'c-4') !important;
+$color-red-5: map.get($color, 'red', 'c-5') !important;
+$color-red-6: map.get($color, 'red', 'c-6') !important;
+$color-red-7: map.get($color, 'red', 'c-7') !important;
+$color-red-8: map.get($color, 'red', 'c-8') !important;
+$color-red-9: map.get($color, 'red', 'c-9') !important;
+$color-red-10: map.get($color, 'red', 'c-10') !important;
+
+$color-green-1: map.get($color, 'green', 'c-1') !important;
+$color-green-2: map.get($color, 'green', 'c-2') !important;
+$color-green-3: map.get($color, 'green', 'c-3') !important;
+$color-green-4: map.get($color, 'green', 'c-4') !important;
+$color-green-5: map.get($color, 'green', 'c-5') !important;
+$color-green-6: map.get($color, 'green', 'c-6') !important;
+$color-green-7: map.get($color, 'green', 'c-7') !important;
+$color-green-8: map.get($color, 'green', 'c-8') !important;
+$color-green-9: map.get($color, 'green', 'c-9') !important;
+$color-green-10: map.get($color, 'green', 'c-10') !important;
+
+$color-orange-1: map.get($color, 'orange', 'c-1') !important;
+$color-orange-2: map.get($color, 'orange', 'c-2') !important;
+$color-orange-3: map.get($color, 'orange', 'c-3') !important;
+$color-orange-4: map.get($color, 'orange', 'c-4') !important;
+$color-orange-5: map.get($color, 'orange', 'c-5') !important;
+$color-orange-6: map.get($color, 'orange', 'c-6') !important;
+$color-orange-7: map.get($color, 'orange', 'c-7') !important;
+$color-orange-8: map.get($color, 'orange', 'c-8') !important;
+$color-orange-9: map.get($color, 'orange', 'c-9') !important;
+$color-orange-10: map.get($color, 'orange', 'c-10') !important;
+
+$color-blue-1: map.get($color, 'blue', 'c-1') !important;
+$color-blue-2: map.get($color, 'blue', 'c-2') !important;
+$color-blue-3: map.get($color, 'blue', 'c-3') !important;
+$color-blue-4: map.get($color, 'blue', 'c-4') !important;
+$color-blue-5: map.get($color, 'blue', 'c-5') !important;
+$color-blue-6: map.get($color, 'blue', 'c-6') !important;
+$color-blue-7: map.get($color, 'blue', 'c-7') !important;
+$color-blue-8: map.get($color, 'blue', 'c-8') !important;
+$color-blue-9: map.get($color, 'blue', 'c-9') !important;
+$color-blue-10: map.get($color, 'blue', 'c-10') !important;
+
+$color-purple-1: map.get($color, 'purple', 'c-1') !important;
+$color-purple-2: map.get($color, 'purple', 'c-2') !important;
+$color-purple-3: map.get($color, 'purple', 'c-3') !important;
+$color-purple-4: map.get($color, 'purple', 'c-4') !important;
+$color-purple-5: map.get($color, 'purple', 'c-5') !important;
+$color-purple-6: map.get($color, 'purple', 'c-6') !important;
+$color-purple-7: map.get($color, 'purple', 'c-7') !important;
+$color-purple-8: map.get($color, 'purple', 'c-8') !important;
+$color-purple-9: map.get($color, 'purple', 'c-9') !important;
+$color-purple-10: map.get($color, 'purple', 'c-10') !important;
+
+$color-yellow-1: map.get($color, 'yellow', 'c-1') !important;
+$color-yellow-2: map.get($color, 'yellow', 'c-2') !important;
+$color-yellow-3: map.get($color, 'yellow', 'c-3') !important;
+$color-yellow-4: map.get($color, 'yellow', 'c-4') !important;
+$color-yellow-5: map.get($color, 'yellow', 'c-5') !important;
+$color-yellow-6: map.get($color, 'yellow', 'c-6') !important;
+$color-yellow-7: map.get($color, 'yellow', 'c-7') !important;
+$color-yellow-8: map.get($color, 'yellow', 'c-8') !important;
+$color-yellow-9: map.get($color, 'yellow', 'c-9') !important;
+$color-yellow-10: map.get($color, 'yellow', 'c-10') !important;
+
+$color-skyblue-1: map.get($color, 'skyblue', 'c-1') !important;
+$color-skyblue-2: map.get($color, 'skyblue', 'c-2') !important;
+$color-skyblue-3: map.get($color, 'skyblue', 'c-3') !important;
+$color-skyblue-4: map.get($color, 'skyblue', 'c-4') !important;
+$color-skyblue-5: map.get($color, 'skyblue', 'c-5') !important;
+$color-skyblue-6: map.get($color, 'skyblue', 'c-6') !important;
+$color-skyblue-7: map.get($color, 'skyblue', 'c-7') !important;
+$color-skyblue-8: map.get($color, 'skyblue', 'c-8') !important;
+$color-skyblue-9: map.get($color, 'skyblue', 'c-9') !important;
+$color-skyblue-10: map.get($color, 'skyblue', 'c-10') !important;
+
+$text-color: () !default;
+$text-color: map.deep-merge(
+  (
+    'base': #172231,
+    'primary': #0F4EAB,
+    'secondary': #999,
+    'placeholder': #999,
+    'disabled': #333,
+  ),
+  $text-color
+);
+$text-color-regular: map.get($text-color, 'base') !default;
+$text-color-primary: map.get($text-color, 'primary') !default;
+$text-color-secondary: map.get($text-color, 'secondary') !default;
+$text-color-placeholder: map.get($text-color, 'placeholder') !default;
+$text-color-disabled: map.get($text-color, 'disabled') !default;
+
+
+$bg-color: () !default;
+$bg-color: map.deep-merge(
+  (
+    'default': #ffffff
+  ),
+  $bg-color
+);
+$bg-color-default: map.get($bg-color, 'default') !default;
+
+$border-color: () !default;
+$border-color: map.deep-merge(
+  $border-color,
+  (
+    'default': #999,
+    'hover': $color-auxiliary,
+  ),
+);
+$border-color-default: map.get($border-color, 'default') !default;
+$border-color-hover: map.get($border-color, 'hover') !default;
+
+$border-radius: () !default;
+$border-radius: map.deep-merge(
+  $border-radius,
+  (
+    'default': 4px
+  ),
+);
+$border-radius-default: map.get($border-radius, 'default') !default;
+
+$disabled-color: () !default;
+$disabled-color: map.deep-merge(
+  $disabled-color,
+  (
+    'text': #d62424,
+    'border': #999,
+    'bg': #eee,
+  )
+);
+$disabled-color-text: map.get($disabled-color, 'text') !default;
+$disabled-color-border: map.get($disabled-color, 'border') !default;
+$disabled-color-bg: map.get($disabled-color, 'bg') !default;
+
+$font-size: () !default;
+$font-size: map.deep-merge(
+  (
+    'family': ('Roboto', 'Roboto-Regular', 'Roboto-bold', 'PingFang SC', 'Microsoft YaHei'),
+    'small': 10px,
+    'normal': 12px,
+    'medium': 14px,
+    'large': 16px,
+    '18': 18px,
+    '20': 20px,
+    '24': 24px,
+  ),
+  $font-size
+);
+$font-family: map.get($font-size, 'family') !default;
+$font-size-small: map.get($font-size, 'small') !default;
+$font-size-normal: map.get($font-size, 'normal') !default;
+$font-size-medium: map.get($font-size, 'medium') !default;
+$font-size-large: map.get($font-size, 'large') !default;
+$font-size-18: map.get($font-size, '18') !default;
+$font-size-20: map.get($font-size, '20') !default;
+$font-size-24: map.get($font-size, '24') !default;
+$font-bold: 700 !default;
+$font-regular: 400 !default;
+
+/**
+* Shadow type section
+*/
+$shadow: () !default;
+$shadow: map.deep-merge(
+  (
+    // shadow
+    default: 0 0 8px 8px rgb(209, 209, 209, 0.5),
+    // normal
+    normal: 0 0 18px 0px rgb(29 41 57 / 14%),
+    // Button shadow
+    btn: 0 2px 4px 0 rgba(204, 204, 204, 1),
+    // Tab shadow
+    tab: 0 2px 4px 0 rgba(204, 204, 204, 0.5),
+    // window shadow
+    windows: 0 8px 10px 0 rgba(204, 204, 204, 1),
+    // windows:  0 0px 30px 0 rgba(0, 0, 0, 0.25),
+  ),
+  $shadow
+);
+
+// shadow
+$default-shadow: map.get($shadow, 'default') !default;
+
+// normal
+$normal-shadow: map.get($shadow, 'normal') !default;
+
+// Button shadow
+$btn-shadow: map.get($shadow, 'btn') !default;
+
+// Tabs shadow
+$tab-shadow: map.get($shadow, 'tab') !default;
+
+// Window shadow
+$window-shadow: map.get($shadow, 'windows') !default;

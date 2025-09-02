@@ -1,0 +1,9 @@
+// Changing the element-plus custom namespace, default is 'el'.
+// If the developer wants to change the namespace again, there are three files need to be changed. Details are as follows:
+  // File 1: 'current(/src/assets/common/css/namespace-lx.scss)'
+  // File 2: '/vue.config.js -> css config'
+  // File 3: 'src/App.vue  -> el-config-provider -> namespace'
+
+@forward 'element-plus/theme-chalk/src/mixins/config.scss' with (
+  $namespace: 'ms'
+);

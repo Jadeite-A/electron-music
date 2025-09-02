@@ -1,0 +1,89 @@
+/**
+* Element-plus Compatibility Section
+*/
+@use '@/assets/common/css/variables.scss' as *;
+
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $font-size: (
+    'extra-large': $font-size-20,
+    'large': $font-size-large,
+    'medium': $font-size-medium,
+    'base': $font-size-normal,
+    'small': $font-size-small,
+    'extra-small': $font-size-small
+  ),
+  $colors: (
+    'primary': (
+      'base': $color-primary
+    ),
+    'success': (
+      'base': $color-success
+    ),
+    'warning': (
+      'base': $color-warning
+    ),
+    'danger': (
+      'base': $color-danger
+    ),
+    'error': (
+      'base': $color-error
+    ),
+    'info': (
+      'base': $color-gray-999
+    )
+  ),
+  $disabled: (
+    'bg-color': $disabled-color-bg,
+    'text-color': $text-color-disabled,
+    'border-color': $disabled-color-border
+  ),
+  $text-color: (
+    'primary': $text-color-regular,
+    'regular': $text-color-regular,
+    'secondary': $text-color-secondary,
+    'placeholder': $text-color-placeholder,
+    'disabled': $text-color-disabled,
+  ),
+  $border-color: (
+    '': $border-color-default,
+    'light': $border-color-default
+  ),
+  $border-color-hover: $border-color-hover,
+  $border-radius: (
+    'base': $border-radius-default,
+  ),
+  $tree: (
+    'node-hover-bg-color': $color-auxiliary
+  ),
+  $collapse: (
+    'header-height': 2.2em,
+    'content-font-size': 'inhert'
+  ),
+  $tabs: (
+    'header-height': 28px
+  ),
+  $input: (
+    'border-color': $border-color-default
+  ),
+  $common-component-size: (
+    'large': 32px,
+    'default': 24px,
+    'small': 20px
+  ),
+  $select: (
+    'input-font-size': $font-size-normal
+  ),
+  $select-item-height: (
+    'large': 2rem,
+    'default': 1.8rem,
+    'small': 1rem
+  ),
+  $checkbox: (
+    'font-size': $font-size-normal
+  )
+);
+
+// The code below cannot be deleted.
+@use 'element-plus/theme-chalk/src/index.scss' as *;
+@use 'element-plus/theme-chalk/src/dark/css-vars.scss' as *;
+

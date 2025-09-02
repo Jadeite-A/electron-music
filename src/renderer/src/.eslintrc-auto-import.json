@@ -79,6 +79,7 @@
     "watchPostEffect": true,
     "watchSyncEffect": true,
     "withDefaults": true,
-    "GlobalComponents": true
+    "GlobalComponents": true,
+    "main": true
   }
 }

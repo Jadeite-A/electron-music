@@ -10,3 +10,6 @@
 // import i18n from '@utils/i18n';
 </script>
 
+<style lang="scss">
+@use '@/assets/common/css/index';
+</style>

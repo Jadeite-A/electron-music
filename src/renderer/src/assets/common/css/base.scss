@@ -1,0 +1,215 @@
+/**
+ * Basic css
+ */
+ @use './variables.scss' as *;
+
+ * {
+   box-sizing: border-box;
+   box-sizing: border-box;
+   box-sizing: border-box;
+   -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
+ }
+ body,
+ html {
+   width: 100%;
+   height: 100%;
+   padding: 0;
+   margin: 0;
+   overflow: hidden;
+   font-family: $font-family;
+   font-size: 12px;
+   font-weight: $font-regular;
+   -webkit-font-smoothing: antialiased;
+   text-size-adjust: none;
+   -webkit-min-font-size: 6px;
+   user-select: none;
+   &.fullpage {
+     width: 100%;
+     height: 100%;
+     overflow: hidden;
+   }
+ }
+ #lx-app {
+   width: 100%;
+   height: 100%;
+   color: $text-color-regular;
+ }
+ 
+ :focus {
+   outline: none;
+ }
+ img {
+   max-width: 100%;
+   object-fit: cover; //黑魔法
+ }
+ article,
+ aside,
+ blockquote,
+ body,
+ button,
+ dd,
+ details,
+ div,
+ dl,
+ dt,
+ fieldset,
+ figcaption,
+ figure,
+ footer,
+ form,
+ h1,
+ h2,
+ h3,
+ h4,
+ h5,
+ h6,
+ header,
+ hgroup,
+ hr,
+ input,
+ legend,
+ li,
+ menu,
+ nav,
+ ol,
+ p,
+ section,
+ td,
+ textarea,
+ th,
+ ul {
+   padding: 0;
+   margin: 0;
+ }
+ ul {
+   li {
+     list-style-type: none;
+   }
+ }
+ 
+ input:disabled {
+   cursor: not-allowed;
+ }
+ 
+ select:disabled {
+   cursor: not-allowed;
+ }
+ 
+ .clearfix::before,
+ .clearfix::after {
+   display: table;
+   content: ' ';
+ }
+ .clearfix::after {
+   clear: both;
+ }
+ .pull-right {
+   float: right;
+ }
+ .pull-left {
+   float: left;
+ }
+ .dis-inline-block {
+   display: inline-block;
+ }
+ .dis-block {
+   display: block;
+ }
+ .dis-none {
+   display: none;
+ }
+ .width-all {
+   width: 100%;
+ }
+ .height-all {
+   height: 100%;
+ }
+ .cursor-p {
+   cursor: pointer;
+ }
+ .cursor-not-allowed {
+   cursor: not-allowed;
+ }
+ .word-break-all {
+   word-break: break-all;
+   word-wrap: break-word;
+ }
+ 
+ // 基础字号设计部分
+ .font12 {
+   font-size: 12px;
+ }
+ .font14 {
+   font-size: 14px;
+ }
+ .font16 {
+   font-size: 16px;
+ }
+ .font18 {
+   font-size: 18px;
+ }
+ .font20 {
+   font-size: 20px;
+ }
+ .regular {
+   font-weight: 400;
+ }
+ .normal {
+   font-weight: 500;
+ }
+ .text-right {
+   text-align: right;
+ }
+ .text-left {
+   text-align: left;
+ }
+ .nowrap {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+ }
+ 
+ // 阴影设置部分
+ // 按钮阴影
+ .btn-shadow {
+   box-shadow: $btn-shadow;
+ }
+ 
+ // Tab阴影
+ .tab-shadow {
+   box-shadow: $tab-shadow;
+ }
+ 
+ // window阴影
+ .window-shadow {
+   box-shadow: $window-shadow;
+ }
+ .lx-container {
+   position: relative;
+   width: 100%;
+   height: 100%;
+ }
+ .m-t-10 {
+   margin-top: 10px;
+ }
+ .p-l-20 {
+   padding-left: 20px;
+ }
+ ::-webkit-scrollbar {
+   width: 6px;
+   height: 6px;
+ }
+ ::-webkit-scrollbar-track {
+   background: rgb(0 0 0 / 0%);
+ }
+ ::-webkit-scrollbar-thumb {
+   background: rgb(0 0 0 / 5%);
+   border-radius: $border-radius-default;
+   box-shadow: inset 0 0 10px rgb(0 0 0 / 10%);
+ }
+ ::-webkit-scrollbar-thumb:hover {
+   background: rgb(0 0 0 / 15%);
+ }
+ 
+ 
+ 
