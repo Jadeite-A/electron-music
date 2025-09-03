@@ -29,7 +29,7 @@
      overflow: hidden;
    }
  }
- #lx-app {
+ #app {
    width: 100%;
    height: 100%;
    color: $text-color-regular;
@@ -180,21 +180,6 @@
    box-shadow: $tab-shadow;
  }
  
- // window阴影
- .window-shadow {
-   box-shadow: $window-shadow;
- }
- .lx-container {
-   position: relative;
-   width: 100%;
-   height: 100%;
- }
- .m-t-10 {
-   margin-top: 10px;
- }
- .p-l-20 {
-   padding-left: 20px;
- }
  ::-webkit-scrollbar {
    width: 6px;
    height: 6px;

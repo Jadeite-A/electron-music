@@ -30,6 +30,7 @@
     "element-plus": "^2.9.10",
     "pinia": "^3.0.3",
     "sass": "^1.89.0",
+    "splitpanes": "^4.0.4",
     "utf8": "^3.0.0",
     "vue-router": "^4.5.1"
   },

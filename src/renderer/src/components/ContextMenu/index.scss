@@ -1,0 +1,97 @@
+@use '@/assets/common/css/font.scss' as *;
+@use '@/assets/common/css/color.scss' as *;
+.context-menu-layer {
+  position: fixed;
+  top: 1em;
+  z-index: 99999;
+  min-width: 4em;
+  max-height: 600px;
+
+  // left: 1em;
+  padding: 0.4em 0;
+  user-select: none;
+
+  // letter-spacing: 0.1em;
+  background: $bg-color-default;
+  border: 1px solid $color-base;
+  border-radius: 4px;
+  box-shadow: $normal-shadow;
+  .menuScroll {
+    max-height: 500px;
+    overflow-y: scroll;
+  }
+  .menu-list {
+    .menu-item {
+      position: relative;
+
+      // display: flex;
+      align-items: center;
+      min-width: 6em;
+      height: 2em;
+      padding: 0 1.6em;
+      line-height: 2em;
+      cursor: pointer;
+      .menu-icon {
+        position: absolute;
+        top: 50%;
+        left: 12px;
+        font-size: 14px;
+        color: $color-999;
+        transform: translate(-50%, -50%);
+      }
+      .menu-icon__sub_right {
+        position: absolute;
+        top: 0.3em;
+        right: 0.2em;
+        margin-left: 0.5em;
+        font-size: 14px;
+        color: $color-172231;
+      }
+      .menu-icon__sub_left {
+        position: absolute;
+        top: 0.3em;
+        left: 0.2em;
+        font-size: 14px;
+        color: $color-172231;
+        transform: rotateY(180deg);
+      }
+      .menu-label {
+        flex: 1;
+        width: 110px;
+        padding-left: 5px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      &.disabled {
+        color: $color-999;
+        cursor: not-allowed;
+        background-color: $color-cccc50;
+      }
+      &:not(.disabled):hover, &.actived {
+        background-color: $color-base;
+        > .menu-label {
+          color: $color-fff;
+        }
+        > .lx-icon {
+          color: $color-fff;
+        }
+        // > .sub-menu {
+        //   display: block;
+        // }
+      }
+    }
+    .separator {
+      height: 1px;
+      margin: 0.2em 0.6em;
+      background-color: $separator-default;
+    }
+  }
+  &.sub-menu {
+    position: absolute;
+    top: 0;
+    // display: none;
+
+    // left: 100%;
+  }
+}

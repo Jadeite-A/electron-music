@@ -2,6 +2,7 @@ import fs from 'fs'
 import Path from 'path'
 import ipcMain from './ipcMain'
 import { app, dialog, shell, type FileFilter, type OpenDialogOptions } from 'electron'
+import { logsPath } from './mainLogger'
 
 ipcMain.on('ms.render.choose.file', (_event, service: string, type = [], options: any) => {
   const filters: FileFilter[] = []
@@ -47,7 +48,7 @@ ipcMain.on('ms.render.choose.file', (_event, service: string, type = [], options
     })
 })
 
-ipcMain.on('lx.render.choose.directory', (_event, options: any) => {
+ipcMain.on('ms.render.choose.directory', (_event, options: any) => {
   const { token } = options
   let defaultPath: string | undefined = options.defaultPath
   if (defaultPath) {
@@ -75,4 +76,8 @@ ipcMain.on('lx.render.choose.directory', (_event, options: any) => {
     .catch((err) => {
       console.error(err)
     })
+})
+
+ipcMain.on('ms.preload.getLogsPath', (event) => {
+  event.reply('ms.main.logsPath', logsPath)
 })

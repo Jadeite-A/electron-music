@@ -141,17 +141,6 @@ $color-gray-eee: map.get($color, 'gray', 'eee') !default;
 $color-gray-f8f8f8: map.get($color, 'gray', 'f8f8f8') !default;
 $color-white: map.get($color, 'white', 'base') !default;
 
-$color-blue-l-1: color.scale($color-primary, $lightness: 15%);
-$color-blue-l-2: color.scale($color-primary, $lightness: 30%);
-$color-blue-l-3: color.scale($color-primary, $lightness: 45%);
-$color-blue-l-4: color.scale($color-primary, $lightness: 60%);
-$color-blue-l-5: color.scale($color-primary, $lightness: 75%);
-$color-blue-d-1: color.scale($color-primary, $lightness: -15%);
-$color-blue-d-2: color.scale($color-primary, $lightness: -30%);
-$color-blue-d-3: color.scale($color-primary, $lightness: -45%);
-$color-blue-d-4: color.scale($color-primary, $lightness: -60%);
-$color-blue-d-5: color.scale($color-primary, $lightness: -75%);
-
 $color-red-1: map.get($color, 'red', 'c-1') !important;
 $color-red-2: map.get($color, 'red', 'c-2') !important;
 $color-red-3: map.get($color, 'red', 'c-3') !important;

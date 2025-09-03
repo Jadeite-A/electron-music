@@ -1,20 +1,23 @@
 <template>
-  <div v-if="networkStatus" class="network-status" @mousedown.stop="() => false" >No Internet</div>
+  <div class="main-container">
+    222
+  </div>
 </template>
 <script setup lang="ts">
 
 
-// Network status listener
-const networkStatus = ref(true);
-window.addEventListener('online', () => {
-  if (!networkStatus.value) {
-    networkStatus.value = true;
-  }
-});
-window.addEventListener('offline', () => {
-  if (networkStatus.value) {
-    networkStatus.value = false;
-  }
-});
+
 
 </script>
+
+<style scoped lang="scss">
+@use '@/assets/common/css/variables.scss' as *;
+.network-status {
+  height: 50px;
+  font-size: $font-size-large;
+  line-height: 50px;
+  color: $color-white;
+  text-align: center;
+  background: $color-danger;
+}
+</style>

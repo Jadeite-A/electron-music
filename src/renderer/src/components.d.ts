@@ -12,6 +12,7 @@ declare module 'vue' {
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     Main: typeof import('./views/Main.vue')['default']
     MainWindow: typeof import('./views/MainWindow.vue')['default']
+    Ribbon: typeof import('./views/Ribbon/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

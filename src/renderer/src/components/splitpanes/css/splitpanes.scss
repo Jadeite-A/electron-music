@@ -1,0 +1,189 @@
+.splitpanes {
+  --pane-background-color: #f2f2f2;
+  --splitter-border-color: #ddd;
+  --splitter-bg-color: #fff;
+  --splitter-arrow-color: #c4c4c4;
+  --drawer-splitter-width: 20px;
+}
+
+
+.splitpanes {
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  &--vertical {flex-direction: row;}
+  &--horizontal {flex-direction: column;}
+  &--dragging * {user-select: none;}
+
+  &__pane {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    .splitpanes--vertical & {transition: width 0.2s ease-out;}
+    .splitpanes--horizontal & {transition: height 0.2s ease-out;}
+    .splitpanes--dragging & {transition: none;}
+  }
+
+  // Disable default zoom behavior on touch device when double tapping splitter.
+  &__splitter {touch-action: none;}
+  &--vertical > .splitpanes__splitter {min-width: 1px;cursor: col-resize;}
+  &--horizontal > .splitpanes__splitter {min-height: 1px;cursor: row-resize;}
+
+  .splitpanes__pane {
+    // padding: 3px;
+    background-color: var(--pane-background-color);
+    // box-shadow: 0 0 3px var(--splitter-border-color) inset;
+  }
+
+
+  .splitpanes__splitter {
+    z-index: 1;
+    position: relative;
+    flex-shrink: 0;
+    background-color: var(--splitter-bg-color);
+    box-sizing: border-box;
+    &:before, &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background-color: rgba(0, 0, 0, .15);
+      transition: background-color 0.3s;
+    }
+    &:hover:before, &:hover:after {background-color: rgba(0, 0, 0, .25);}
+    &:first-child {cursor: auto;}
+
+    
+
+  }
+
+  &.splitpanes--vertical > .splitpanes__splitter,
+  .splitpanes--vertical > .splitpanes__splitter {
+    width: 7px;
+    border-left: 1px solid var(--splitter-border-color);
+    border-right: 1px solid var(--splitter-border-color);
+    margin-left: -1px;
+
+    &:before, &:after {
+      transform: translateY(-50%);
+      width: 1px;
+      height: 30px;
+    }
+    &:before {margin-left: -2px;}
+    &:after {margin-left: 1px;}
+
+    
+  }
+  &.splitpanes--horizontal > .splitpanes__splitter,
+  .splitpanes--horizontal > .splitpanes__splitter {
+    height: 7px;
+    border-top: 1px solid var(--splitter-border-color);
+    border-bottom: 1px solid var(--splitter-border-color);
+    margin-top: -1px;
+
+    &:before,
+    &:after {
+      transform: translateX(-50%);
+      width: 30px;
+      height: 1px;
+    }
+    &:before {margin-top: -2px;}
+    &:after {margin-top: 1px;}
+
+    // > .splitpanes__splitter__btn {
+    //   right: unset;
+    //   transform: rotate(90deg);
+    //   left: 50%;
+    //   margin-top: -33px;
+    //   margin-left: -15px;
+    // }
+    
+  }
+
+  // drawer模式
+  &--drawer {
+    &.splitpanes--horizontal > .splitpanes__splitter,
+    &.splitpanes--vertical > .splitpanes__splitter {
+      overflow: hidden;
+
+      &::before, &::after {
+        display: none;
+      }
+
+      // 显示drawer箭头
+      > .splitpanes__splitter__arrow {
+        position: absolute;
+        // background-color: red;
+        cursor: pointer;
+        overflow: hidden;
+
+        &:hover {
+          background-color: var(--splitter-border-color);
+          &::before, &::after {
+            border-color: var(--splitter-bg-color);
+          }
+        }
+
+        &::before, &::after {
+          content: '';
+          position: absolute;
+          display: inline-block;
+          
+          width: calc(var(--drawer-splitter-width) * 0.4);
+          height: calc(var(--drawer-splitter-width) * 0.4);
+          border-width: 2px 0 0 2px;
+          border-style: solid;
+          border-color: var(--splitter-arrow-color);
+        }
+
+        &.arrow__collapse {
+          transform: rotate(-180deg);
+        }
+      }
+    }
+    
+    &.splitpanes--horizontal {
+      > .splitpanes__splitter {
+        height: var(--drawer-splitter-width);
+
+        > .splitpanes__splitter__arrow {
+          width: calc(var(--drawer-splitter-width) * 2);
+          height: 100%;
+          left: 50%;
+          margin-left: calc(var(--drawer-splitter-width) / -2);
+
+          &::before, &::after {
+            transform: rotate(45deg);
+            top: 4px;
+            left: 15px;
+          }
+          &::after {
+            top: 11px;
+          }
+        }
+      }
+    }
+    &.splitpanes--vertical {
+      > .splitpanes__splitter {
+        width: var(--drawer-splitter-width);
+
+        > .splitpanes__splitter__arrow {
+          width: 100%;
+          height: calc(var(--drawer-splitter-width) * 2);
+          top: 50%;
+          margin-top: calc(var(--drawer-splitter-width) / -2);
+          &::before, &::after {
+            top: 16px;
+            left: 4px;
+            transform: rotate(-45deg);
+          }
+          &::after {
+            left: 11px;
+          }
+        }
+      }
+    }
+  }
+}

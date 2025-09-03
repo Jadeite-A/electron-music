@@ -8,11 +8,18 @@
   ],
   "compilerOptions": {
     "composite": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "@renderer/*": [
-        "src/renderer/src/*"
-      ]
+      "@/*": ["src/renderer/src/*"],
+      "@assets": ["src/renderer/src/assets/*"],
+      "@components/*": ["src/renderer/src/components/*"],
+      "@utils/*": ["src/renderer/src/utils/*"],
+      "@views/*": ["src/renderer/src/views/*"],
+      // "@constructors/*": ["src/constructors/*"],
+      "@stores/*": ["src/renderer/src/stores/*"],
+      // "@api/*": ["src/api/*"],
+      // "@config/*": ["/src/config/*"],
+      // "@types/*": ["src/types/*"]
     }
   }
 }

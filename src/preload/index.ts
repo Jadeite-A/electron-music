@@ -1,12 +1,23 @@
 import { contextBridge, shell } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 
+import Path from 'path'
 import log from 'electron-log'
 
 // Custom APIs for renderer
 const api = {}
-
 const systemLog = log.create({ logId: 'system' })
+
+const ipcRenderer = electronAPI.ipcRenderer
+let logsPath = ''
+ipcRenderer.send('ms.preload.getLogsPath')
+
+ipcRenderer.on('ms.main.logsPath', (_event, _logsPath) => {
+  logsPath = _logsPath
+  console.log('🐦‍🔥 _logsPath', _logsPath)
+  systemLog.transports.file.resolvePathFn = () => Path.join(_logsPath, `./renderer-system.log`)
+})
+
 const Logger = {
   info: (message, data?: any) => {
     systemLog.info(
@@ -33,7 +44,6 @@ if (process.contextIsolated) {
     contextBridge.exposeInMainWorld('electron', electronAPI)
     contextBridge.exposeInMainWorld('api', api)
     contextBridge.exposeInMainWorld('openExternalLink', (url) => shell.openExternal(url))
-
     contextBridge.exposeInMainWorld('Logger', Logger)
   } catch (error) {
     console.error(error)
@@ -45,4 +55,6 @@ if (process.contextIsolated) {
   window.api = api
   // @ts-ignore (define in dts)
   window.openExternalLink = (url) => shell.openExternal(url)
+  // @ts-ignore (define in dts)
+  window.Logger = Logger
 }

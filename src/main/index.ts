@@ -3,9 +3,9 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 
-// import { Logger } from './mainLogger'
+import { Logger } from './mainLogger'
 
-// Logger.info('Application is starting')
+Logger.info('Application is starting')
 
 let mainWindow: BrowserWindow
 
@@ -78,6 +78,5 @@ app.on('window-all-closed', () => {
   }
 })
 
-console.log('🐦‍🔥', app.getPath('userData'))
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.

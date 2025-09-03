@@ -6,10 +6,9 @@ import App from './App.vue'
 import router from './router'
 import stores from './stores'
 // Global customize directives
-// import directives from './directives';
+import directives from './directives'
 
-const app = createApp(App).use(stores).use(router)
-// .use(directives)
+const app = createApp(App).use(stores).use(router).use(directives)
 
 app.mount('#app')
 
