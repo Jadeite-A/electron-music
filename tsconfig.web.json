@@ -15,9 +15,9 @@
       "@components/*": ["src/renderer/src/components/*"],
       "@utils/*": ["src/renderer/src/utils/*"],
       "@views/*": ["src/renderer/src/views/*"],
-      // "@constructors/*": ["src/constructors/*"],
+      "@service/*": ["src/service/*"],
       "@stores/*": ["src/renderer/src/stores/*"],
-      // "@api/*": ["src/api/*"],
+      "@directives/*": ["src/directives/*"],
       // "@config/*": ["/src/config/*"],
       // "@types/*": ["src/types/*"]
     }

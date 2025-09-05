@@ -1,4 +1,4 @@
 import Splitpanes from './splitpanes.vue'
-import Pane from './pane.vue'
+import SplitpanesPane from './pane.vue'
 
-export { Splitpanes, Pane }
+export { Splitpanes, SplitpanesPane }

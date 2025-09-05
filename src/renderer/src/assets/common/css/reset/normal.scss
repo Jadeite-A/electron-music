@@ -20,6 +20,13 @@ a {
     border-bottom: 1px solid $color-blue-3;
   }
 
+  &.splitpanes--vertical .splitpanes__splitter {
+    width: 7px;
+    height: 100%;
+    border-left: 1px solid $color-blue-3;
+    border-right: 1px solid $color-blue-3;
+  }
+
   .splitpanes__splitter {
     cursor: pointer;
     &:hover {

@@ -6,7 +6,16 @@
 // biome-ignore lint: disable
 export {}
 declare global {
+  const Array: typeof import('@element-plus/icons-vue')['Array']
+  const Boolean: typeof import('@element-plus/icons-vue')['Boolean']
   const EffectScope: typeof import('vue')['EffectScope']
+  const Error: typeof import('@element-plus/icons-vue')['Error']
+  const Math: typeof import('@element-plus/icons-vue')['Math']
+  const Number: typeof import('@element-plus/icons-vue')['Number']
+  const Object: typeof import('@element-plus/icons-vue')['Object']
+  const Reflect: typeof import('@element-plus/icons-vue')['Reflect']
+  const String: typeof import('@element-plus/icons-vue')['String']
+  const Vue: typeof import('@element-plus/icons-vue')['Vue']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
   const customRef: typeof import('vue')['customRef']

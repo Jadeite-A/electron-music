@@ -80,6 +80,15 @@
     "watchSyncEffect": true,
     "withDefaults": true,
     "GlobalComponents": true,
-    "main": true
+    "main": true,
+    "Object": true,
+    "Vue": true,
+    "Array": true,
+    "Boolean": true,
+    "Error": true,
+    "Math": true,
+    "Number": true,
+    "Reflect": true,
+    "String": true
   }
 }

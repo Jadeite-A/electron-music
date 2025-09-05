@@ -1,5 +1,7 @@
-@use '@/assets/common/css/font.scss' as *;
-@use '@/assets/common/css/color.scss' as *;
+// @use '@/assets/common/css/font.scss' as *;
+// @use '@/assets/common/css/color.scss' as *;
+@use '@/assets/common/css/variables.scss' as *;
+
 .context-menu-layer {
   position: fixed;
   top: 1em;
@@ -13,7 +15,7 @@
 
   // letter-spacing: 0.1em;
   background: $bg-color-default;
-  border: 1px solid $color-base;
+  border: 1px solid $color-auxiliary;
   border-radius: 4px;
   box-shadow: $normal-shadow;
   .menuScroll {
@@ -36,7 +38,7 @@
         top: 50%;
         left: 12px;
         font-size: 14px;
-        color: $color-999;
+        color: $color-gray-999;
         transform: translate(-50%, -50%);
       }
       .menu-icon__sub_right {
@@ -45,14 +47,12 @@
         right: 0.2em;
         margin-left: 0.5em;
         font-size: 14px;
-        color: $color-172231;
       }
       .menu-icon__sub_left {
         position: absolute;
         top: 0.3em;
         left: 0.2em;
         font-size: 14px;
-        color: $color-172231;
         transform: rotateY(180deg);
       }
       .menu-label {
@@ -64,17 +64,17 @@
         white-space: nowrap;
       }
       &.disabled {
-        color: $color-999;
+        color: $color-gray-999;
         cursor: not-allowed;
-        background-color: $color-cccc50;
+        background-color: $color-gray-ccc;
       }
       &:not(.disabled):hover, &.actived {
-        background-color: $color-base;
+        background-color: $color-auxiliary;
         > .menu-label {
-          color: $color-fff;
+          color: $color-white;
         }
         > .lx-icon {
-          color: $color-fff;
+          color: $color-white;
         }
         // > .sub-menu {
         //   display: block;
@@ -84,14 +84,11 @@
     .separator {
       height: 1px;
       margin: 0.2em 0.6em;
-      background-color: $separator-default;
+      // background-color: $separator-default;
     }
   }
   &.sub-menu {
     position: absolute;
     top: 0;
-    // display: none;
-
-    // left: 100%;
   }
 }

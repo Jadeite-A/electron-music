@@ -12,7 +12,7 @@ import {
   VNodeProps
 } from 'vue'
 
-import ContextMenu from './index.vue'
+import ContextMenu from '@components/ContextMenu/index.vue'
 import { getPosInfo } from '@components/ContextMenu/index'
 import type { ContextMenuOptions } from '@components/ContextMenu/types'
 
