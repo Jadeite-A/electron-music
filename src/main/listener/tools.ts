@@ -1,8 +1,11 @@
 import axios from 'axios'
 import fs from 'fs'
+// import puppeteer from 'puppeteer'
+
 const Path = require('path')
 const utf8 = require('utf8')
 const cheerio = require('cheerio')
+
 import { app, dialog, shell, type FileFilter, type OpenDialogOptions } from 'electron'
 
 const cookie_val =
@@ -46,108 +49,111 @@ export const parseSearchHtml = (body) => {
   ]
 }
 
-export const parseMusicHtml = (body) => {
+const parseMusicDetailHtml = (body) => {
   const $ = cheerio.load(body)
+  const cardNode = $('.col-lg-9.main > .card > .card-body')
 
-  // 下载链接
-  const scriptNode = [...$('#player4 ~ script')]
-  const urlRegexp = /(?<=url:\s*['"])(.*?)(?=['"])/
-  const script = $(scriptNode[scriptNode.length - 1])
-  const downloadLink = script?.text()?.toString()?.match(urlRegexp)?.[0] ?? ''
-  // console.log('🐦‍🔥 downloadLind', downloadLink)
-
-  // bo
-  const playerInfo = {
-    img: '',
+  const result: any = {
+    downloadLink: '',
+    authorAvatar: '',
     title: '',
-    author: '',
-    time: ''
+    singer: [],
+    singerTagLink: '',
+    authorName: '',
+    updateDate: '',
+    readCount: '',
+    musicLyrics: [],
+    recommend: [],
+    comment: []
   }
-  // // const playerNode = [...$('#player4')]
-  // const playerNode = $('#player4')
-  // const playerImg = $('#player4 .aplayer-pic')
-  // playerInfo.img =
-  //   $(playerImg[0])
-  //     .attr('style')
-  //     ?.match(/url\('(.+?)'\)/)?.[1] ?? ''
-  // console.log('🐦‍🔥 playerImg', playerInfo)
 
-  // playerInfo.title = playerNode.find('.aplayer-info .aplayer-title').text()
-  // playerInfo.author = playerNode.find('.aplayer-info .aplayer-author').text()
+  cardNode.each((card_i, card) => {
+    const cardNode = $(card)
 
-  // playerInfo.time = playerNode.find('.aplayer-info .aplayer-controller .aplayer-dtime').text()
+    if (card_i === 0) {
+      const scriptNode = [...cardNode.find('#player4 ~ script')]
+      const urlRegexp = /(?<=url:\s*['"])(.*?)(?=['"])/
+      const script = $(scriptNode[scriptNode.length - 1])
+      result.downloadLink = script?.text()?.toString()?.match(urlRegexp)?.[0] ?? ''
 
-  // let musicLyrics: string[] = []
-  // const lyricsNode = [...$('#player4 ~ p')]
+      cardNode.find('#player4 ~ p').each((i, p) => {
+        if (p.children.length) {
+          p.children.forEach((child) => {
+            const lyrics = child.data?.toString()?.trim() ?? ''
 
-  // for (let index = 0; index < lyricsNode.length; index++) {
-  //   const $p = $(lyricsNode[index])
-  //   if (!$p.text()) {
-  //     continue
-  //   }
-  //   musicLyrics = [
-  //     ...$p.children().map((i, item) => {
-  //       return $(item).text()
-  //     })
-  //   ]
-  //   break
-  // }
+            if (lyrics) {
+              result.musicLyrics.push(lyrics)
+            }
+          })
+        }
+      })
 
-  // console.log('🐦‍🔥 musicLyrics', musicLyrics)
+      const titleNode = cardNode.find('.media:first')
+      const authorAvatar = titleNode.find('img').attr('src')
+      const title = titleNode.find('.media-body .break-all').text()
 
-  // $('#player4').each((i, node) => {
-  //   const item = $(node)
+      const singerNode = titleNode.find('.media-body a.badge-primary')
+      const singer = Array.from(singerNode).map((tag) => {
+        const $node = $(tag)
 
-  //   const img = item.find('.aplayer-pic')
-  //   const title = item.find('.aplayer-title')
-  //   const author = item.find('.aplayer-author')
-  //   const time = item.find('.aplayer-dtime')
+        const singerName = $node.text()
+        const singerTagLink = $node.attr('href')
 
-  //   playerInfo.img = $(img).attr('style')
-  //   playerInfo.title = title[0].data
-  //   playerInfo.author = author[0].data
-  //   playerInfo.time = time[0].data
-  // })
-  // $('div.aplayer').each((i, node) => {
-  //   // playerInfo.title = node.data
-  //   const div = $(node)
+        return { singerName, singerTagLink }
+      })
 
-  //   const aaa = div.data
-  //   console.log('🐦‍🔥 aaa', aaa, div.find('.aplayer-title').length)
-  // })
-  // $('.aplayer-author').each((i, node) => {
-  //   playerInfo.author = node.data
-  // })
-  // $('.aplayer-dtime').each((i, node) => {
-  //   playerInfo.time = node.data
-  // })
+      const informationNode = titleNode.find('.d-flex.small')
+      const authorName = informationNode.find('.username a.text-muted').text()
+      const updateDate = informationNode.find('.date').text()
+      const readCount = informationNode.find('.date').next().text()
 
-  // console.log('🐦‍🔥 node', $('.aplayer'))
-  // const playerNode = [...$('#player4 .aplayer-title')]
-  // const player = $(playerNode[0])
-
-  // playerInfo.title = $('.aplayer .aplayer-music').text()
-
-  // const style = playerNode.find('.aplayer-pic').attr('style') || ''
-  // const img = style.match(/url\(["']?(.*?)["']?\)/i)?.[1] ?? ''
-  // const title = playerNode.find('.aplayer-title')
-  // const author = playerNode.find('.aplayer-author')
-  // const time = playerNode.find('.aplayer-dtime')
-  // const playerInfo = { img, title, author, time }
-
-  let musicLyrics: any[] = []
-  $('#player4 ~ p').each((i, p) => {
-    if (p.children.length) {
-      const infos = p.children.map((child) => child.data).filter((child) => child)
-      musicLyrics.push(infos)
+      result.authorAvatar = authorAvatar
+      result.title = title
+      result.singer = singer
+      result.authorName = authorName
+      result.updateDate = updateDate
+      result.readCount = readCount
+      return
     }
+
+    if (card_i === 1) {
+      const recommend = cardNode.find('li.text-truncate')
+
+      recommend.each((i, li) => {
+        const liNode = $(li)
+        const date = liNode.find('span.float-right').text()
+
+        const aNode = liNode.find('a')
+        const link = aNode.attr('href')
+        const title = aNode.attr('title')
+
+        result.recommend.push({ date, link, title })
+      })
+
+      return
+    }
+
+    const comment = cardNode.find('li.media')
+
+    comment.each((i, li) => {
+      const liNode = $(li)
+      const avatarLink = liNode.find('a:first img').attr('src')
+
+      const userInfo = liNode.find('.media-body > .small.d-flex')
+      const userName = userInfo.find('.username a.text-muted').text()
+      const login = userInfo.find('.date.ml-2').text()
+      const likeCount = userInfo.find('.haya-post-like .haya-post-like-post-user-count').text()
+
+      const message = liNode.find('.media-body > .message .longenss').text()
+
+      if (!userName && !login) {
+        return
+      }
+      result.comment.push({ avatarLink, userName, login, likeCount, message })
+    })
   })
 
-  return {
-    musicLyrics,
-    playerInfo,
-    downloadLink
-  }
+  return result
 }
 
 export const downloadMp3 = async (url) => {
@@ -174,4 +180,11 @@ export const downloadMp3 = async (url) => {
       writer.on('error', (err) => reject({ code: 'error', error: err }))
     })
   })
+}
+
+export default {
+  fetchPage,
+  parseSearchHtml,
+  parseMusicDetailHtml,
+  downloadMp3
 }

@@ -11,7 +11,6 @@
         </el-tab-pane>
         <el-tab-pane name="2" label="批量下载">Config</el-tab-pane>
       </el-tabs>
-      
     </splitpanes-pane>
     <splitpanes-pane size="30">1111</splitpanes-pane>
   </splitpanes>

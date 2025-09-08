@@ -1,0 +1,265 @@
+@use '@/assets/common/css/variables.scss' as *;
+
+.music-detail-container {
+  height: 100%;
+  padding: 5px 10px;
+
+  background-color: $color-blue-1;
+
+  .header {
+    display: flex;
+    align-items: flex-start;
+    padding: 15px;
+
+    border-radius: 4px;
+    background-color: $color-white;
+
+    .author-avatar {
+      flex: 0 0 auto;
+      width: 45px;
+      height: 45px;
+      margin-right: 10px;
+
+      background-color: red;
+    }
+
+    .music-detail {
+      flex: 1;
+
+      .detail-title {
+        line-height: 1.5em;
+      }
+
+      .singer-box {
+        display: flex;
+        margin-top: 15px;
+
+        .singer-item {
+          padding: 0 5px;
+          margin-right: 10px;
+
+          line-height: 1.5em;
+          font-size: $font-size-small;
+
+          border-radius: 4px;
+          color: $color-white;
+          background-color: $color-black-main;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+
+      .detail-content {
+        display: flex;
+        align-items: center;
+
+        margin-top: 8px;
+        line-height: 1.5em;
+        font-size: $font-size-small;
+        color: $color-gray-999;
+        
+        .author-avatar {
+          font-weight: bold;
+        }
+
+        .music-date {
+          display: flex;
+          align-items: center;
+
+          margin-left: 10px;
+
+          .date {
+            margin-left: 3px;
+          }
+        }
+
+        .read-count {
+          display: flex;
+          align-items: center;
+
+          margin-left: 10px;
+
+          .count {            
+            margin-left: 3px;
+          }
+        }
+      }
+    }
+
+  }
+  
+  .song-detail {
+    margin-top: 15px;
+    padding: 15px;
+
+    border-radius: 4px;
+    background-color: $color-white;
+
+    .music-player {
+      display: flex;
+      align-items: center;
+
+      .player {
+        flex: 1;
+
+        height: 65px;
+
+        border: 1px solid $color-blue-3;
+      }
+
+      .download {
+        width: 65px;
+        height: 65px;
+        margin-left: 15px;
+
+        font-size: 20px;
+      }
+    }
+
+    .lyrics-container {
+      margin-top: 10px;
+      .lyrics-item {
+        line-height: 1.5em;
+      }
+    }
+  }
+
+  .recommend {
+    margin-top: 15px;
+
+    border-radius: 4px;
+    background-color: $color-white;
+
+    .title {
+      padding: 10px 15px;
+      border-bottom: 1px solid $color-blue-6;
+
+      font-size: $font-size-medium;
+      font-weight: bold;
+      line-height: 1.25em;
+      color: $color-blue-6;
+    }
+
+    .recommend-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+
+      padding: 0 15px 5px;
+
+      .recommend-item {
+        flex: 1 1 250px;
+        display: flex;
+        align-items: center;
+
+        min-width: 400px;
+        padding: 10px 0;
+        border-bottom: 1px solid $color-gray-eee;
+
+        .info {
+          flex: 1;
+          width: calc(100% - 82px);
+
+          margin: 0 10px;
+        }
+
+        .date {
+          flex: 0 0 50px;
+        }
+      }
+    }
+  }
+
+  
+  .comment {
+    margin-top: 15px;
+
+    border-radius: 4px;
+    background-color: $color-white;
+
+    .title {
+      padding: 10px 15px;
+      border-bottom: 1px solid $color-blue-6;
+
+      font-size: $font-size-medium;
+      font-weight: bold;
+      line-height: 1.25em;
+      color: $color-blue-6;
+    }
+    
+    .comment-container {
+      padding: 0 15px 5px;
+
+      .comment-item {
+        display: flex;
+        align-items: flex-start;
+
+        padding: 5px 0;
+        border-bottom: 1px solid $color-gray-eee;
+
+        .avatar-box {
+          width: 28px;
+          height: 28px;
+          margin-right: 10px;
+          background-color: blue;
+        }
+
+        .comment-content {
+          flex: 1;
+          .label-box {
+            display: flex;
+            align-items: center;
+
+            font-size: $font-size-small;
+            color: $color-gray-999;
+
+            .content-left {
+              flex: 1;
+              display: flex;
+              align-items: center;
+
+              .user-name {
+                line-height: 1.5em;
+                font-weight: bold;
+              }
+
+              .user-login {
+                margin:  0 10px;
+              }
+
+              .user-like {
+                display: flex;
+                align-items: center;
+
+                .count {
+                  margin-left: 5px;
+                }
+              }
+            }
+
+            .content-right {
+              flex: 0 0 30px;
+
+              background-color: $color-gray-eee;
+
+              border-radius: 4px;
+              text-align: center;
+            }
+          }
+
+          .message {
+            margin-top: 10px;
+            padding: 10px;
+
+            line-height: 1.5em;
+
+            border-radius: 4px;
+            background-color: $color-blue-1;
+          }
+        }
+      }
+    }
+  }
+}

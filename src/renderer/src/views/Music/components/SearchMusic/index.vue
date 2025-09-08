@@ -17,23 +17,24 @@
             v-for="(item, index) in searchRes"
             :key="index"
             class="result-item"
+            @click="() => handleChoice(item)"
           >
             <div class="avatar-container">
-              <!-- <img 
+              <img 
                 class="avatar" 
                 :src="baseUrl + item.avatarLink" 
                 alt=""
-              > -->
+              >
             </div>
             <div class="information-container">
               <div class="title-container">
                 <div class="title nowrap">{{ item.title }}</div>
-                <el-icon 
+                <!-- <el-icon 
                   class="download"
                   @click="() => handleChoice(item)"
                 >
                   <use-download />
-                </el-icon>
+                </el-icon> -->
               </div>
               <div class="information">
                 <div class="text">
@@ -53,12 +54,14 @@
       </div>
     </splitpanes-pane>
     <splitpanes-pane>
-      <el-button :disabled="!musicLink" @click="handleDownload">下载</el-button>
+      <!-- <el-button :disabled="!musicLink" @click="handleDownload">下载</el-button> -->
+       <music-detail v-if="musicInfo" :data="musicInfo" />
     </splitpanes-pane>
   </splitpanes>
 </template>
 
 <script setup lang="ts">
+import Lodash from 'lodash';
 import { Splitpanes, SplitpanesPane } from '@components/splitpanes';
 
 import { sendSearch, sendChoice, sendDownload } from '@/service/music'
@@ -70,8 +73,7 @@ const props = defineProps<{
 const baseUrl = ref('')
 const searchText = ref('');
 const searchRes = ref<any[]>([]);
-const selectItems = ref([]);
-const musicLink = ref('');
+// const musicLink = ref('');
 
 const handleSearch = () => {
   const searchKey = searchText.value.trim()
@@ -85,23 +87,26 @@ window.electron.ipcRenderer.on('ms.main.fetch.page', (_event, data) => {
   searchRes.value = data.data
 });
 
+const musicInfo = ref<any>(null);
+
 const handleChoice = (item) => {
   const url = `${baseUrl.value}${item.link}`;
-
   sendChoice({ url })
 }
-
 
 window.electron.ipcRenderer.on('ms.main.fetch.music.info', (_event, data) => {
   console.log('🐦‍🔥 data', data);
 
-  const { downloadLink } = data
-  musicLink.value = downloadLink
+  // const { downloadLink } = data
+  // musicLink.value = downloadLink
+  musicInfo.value = data
 });
 
-const handleDownload = () => {
-  sendDownload(musicLink.value)
-};
+
+
+// const handleDownload = () => {
+//   sendDownload(musicLink.value)
+// };
 </script>
 
 <style scoped lang="scss">

@@ -21,10 +21,11 @@ declare module 'vue' {
     MainPanel: typeof import('./views/MainPanel/index.vue')['default']
     MainWindow: typeof import('./views/MainWindow.vue')['default']
     Music: typeof import('./views/Music/index.vue')['default']
+    MusicDetail: typeof import('./views/Music/components/MusicDetail/index.vue')['default']
     Ribbon: typeof import('./views/Ribbon/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SearchMusic: typeof import('./views/SearchMusic/index.vue')['default']
+    SearchMusic: typeof import('./views/Music/components/SearchMusic/index.vue')['default']
     Video: typeof import('./views/Video/index.vue')['default']
   }
 }
