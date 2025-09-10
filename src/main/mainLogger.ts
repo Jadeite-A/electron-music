@@ -5,10 +5,7 @@ import { app, ipcMain } from 'electron'
 
 import VersionManager from '../versionManager'
 
-export const logsPath = Path.join(
-  app.getPath('appData'),
-  `../Local/Music/Logs/${VersionManager.version}`
-)
+export const logsPath = Path.join(app.getPath('userData'), `./Local/Logs/${VersionManager.version}`)
 
 const initLogger = (logId: string) => {
   const logIns = log.create({ logId })

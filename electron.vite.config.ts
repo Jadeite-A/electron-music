@@ -1,4 +1,5 @@
-import { resolve } from 'path'
+import fs from 'fs'
+import Path, { resolve } from 'path'
 import { defineConfig, externalizeDepsPlugin, bytecodePlugin } from 'electron-vite'
 
 import vue from '@vitejs/plugin-vue'
@@ -11,22 +12,40 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 import { ElementPlusIconsResolver } from './autoImportIcon.custom'
 
-// const ElementPlusIconsResolver = () => {
-//   return (name: string) => {
-//     // 以大写字母开头的认为是 element-plus 图标
-//     console.log('🐦‍🔥 name', name)
-//     const icons = ['Edit', 'Delete', 'Search', 'Plus', 'Minus']
-//     if (icons.includes(name)) {
-//       return { importName: name, path: '@element-plus/icons-vue' }
-//     }
-//   }
-// }
+const preloadDir = Path.join(__dirname, 'src/preload')
+const preloadFiles = fs
+  .readdirSync(preloadDir)
+  .filter((file) => fs.statSync(Path.join(preloadDir, file)).isFile())
+  .map((file) => Path.join(preloadDir, file))
 
 export default defineConfig({
   main: {
+    assetsInclude: [
+      '*.ps1',
+      '*.sh',
+      '*.bat' // 添加你需要的其他文件类型
+    ],
+    build: {
+      emptyOutDir: true,
+      rollupOptions: {
+        output: {
+          format: 'cjs'
+        }
+      },
+      watch: {}
+    },
     plugins: [externalizeDepsPlugin(), bytecodePlugin()]
   },
   preload: {
+    build: {
+      rollupOptions: {
+        input: preloadFiles,
+        output: {
+          format: 'cjs'
+        }
+      },
+      watch: {}
+    },
     plugins: [externalizeDepsPlugin(), bytecodePlugin()]
   },
   renderer: {

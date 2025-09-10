@@ -14,7 +14,6 @@ ipcRenderer.send('ms.preload.getLogsPath')
 
 ipcRenderer.on('ms.main.logsPath', (_event, _logsPath) => {
   logsPath = _logsPath
-  console.log('🐦‍🔥 _logsPath', _logsPath)
   systemLog.transports.file.resolvePathFn = () => Path.join(_logsPath, `./renderer-system.log`)
 })
 
@@ -36,6 +35,13 @@ const Logger = {
   }
 }
 
+const eStore = {
+  get: (key: string) => ipcRenderer.invoke('store-get', key),
+  set: (key: string, value: any) => ipcRenderer.invoke('store-set', key, value)
+  // get: (key: string) => EStore.get(key),
+  // set: (key: string, value: any) => EStore.set(key, value)
+}
+
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise
 // just add to the DOM global.
@@ -45,6 +51,7 @@ if (process.contextIsolated) {
     contextBridge.exposeInMainWorld('api', api)
     contextBridge.exposeInMainWorld('openExternalLink', (url) => shell.openExternal(url))
     contextBridge.exposeInMainWorld('Logger', Logger)
+    contextBridge.exposeInMainWorld('eStore', eStore)
   } catch (error) {
     console.error(error)
   }
@@ -57,4 +64,6 @@ if (process.contextIsolated) {
   window.openExternalLink = (url) => shell.openExternal(url)
   // @ts-ignore (define in dts)
   window.Logger = Logger
+  // @ts-ignore (define in dts)
+  window.eStore = eStore
 }

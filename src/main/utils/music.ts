@@ -1,6 +1,5 @@
-import axios from 'axios'
 import fs from 'fs'
-// import puppeteer from 'puppeteer'
+import axios from 'axios'
 
 const Path = require('path')
 const utf8 = require('utf8')
@@ -11,45 +10,41 @@ import { app, dialog, shell, type FileFilter, type OpenDialogOptions } from 'ele
 const cookie_val =
   'Cookie: bbs_sid=5pmb8jukg4d5ne9puo2apj6iai; Hm_lvt_4ab5ca5f7f036f4a4747f1836fffe6f2=1664547942; Hm_lpvt_4ab5ca5f7f036f4a4747f1836fffe6f2=1664770918;'
 
-export const fetchPage = async (url) => {
-  const res = await axios.get(url, {
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
-      Cookie: cookie_val,
-      Accept: '*/*'
-    }
-  })
-
-  return res.data ?? null
+const encodeSearchUrl_0 = (key, baseUrl) => {
+  return `${baseUrl}search.htm?keyword=${encodeURIComponent(key)}`
 }
 
-export const parseSearchHtml = (body) => {
+const parseSearchHtml_0 = (body, baseUrl) => {
   const $ = cheerio.load(body)
 
-  return [
-    ...$('li.media.thread.tap').map((i, node) => {
-      const li = $(node)
+  return Array.from($('li.media.thread.tap'), (node) => {
+    const li = $(node)
 
-      const avatarLink = li.find('img').attr('src')
-      const mediaBody = li.find('.media-body')
+    const avatarLink = li.find('img').attr('src')
 
-      const linkA = mediaBody.find('.subject a')
-      const link = linkA.attr('href')
-      const title = linkA.text()
+    const mediaBody = li.find('.media-body')
+    const linkA = mediaBody.find('.subject a')
+    const link = linkA.attr('href')
+    const title = linkA.text()
 
-      const information = mediaBody.find('.d-flex.justify-content-between')
-      const comment = information
-        .find('div:first')
-        .text()
-        .replace(/\\[tn]/gi, '')
-      const tag = information.find('span:last').text()
+    const information = mediaBody.find('.d-flex.justify-content-between')
+    const comment = information
+      .find('div:first')
+      .text()
+      .replace(/\\[tn]/gi, '')
+    const tag = information.find('span:last').text()
 
-      return { avatarLink, link, title, comment, tag }
-    })
-  ]
+    return {
+      title,
+      comment,
+      tag,
+      avatarLink: `${baseUrl}${avatarLink}`,
+      link: `${baseUrl}${link}`
+    }
+  })
 }
 
-const parseMusicDetailHtml = (body) => {
+const parseMusicDetailHtml_0 = (body, baseUrl) => {
   const $ = cheerio.load(body)
   const cardNode = $('.col-lg-9.main > .card > .card-body')
 
@@ -97,7 +92,7 @@ const parseMusicDetailHtml = (body) => {
         const $node = $(tag)
 
         const singerName = $node.text()
-        const singerTagLink = $node.attr('href')
+        const singerTagLink = `${baseUrl}${$node.attr('href')}`
 
         return { singerName, singerTagLink }
       })
@@ -107,7 +102,7 @@ const parseMusicDetailHtml = (body) => {
       const updateDate = informationNode.find('.date').text()
       const readCount = informationNode.find('.date').next().text()
 
-      result.authorAvatar = authorAvatar
+      result.authorAvatar = `${baseUrl}${authorAvatar}`
       result.title = title
       result.singer = singer
       result.authorName = authorName
@@ -124,7 +119,7 @@ const parseMusicDetailHtml = (body) => {
         const date = liNode.find('span.float-right').text()
 
         const aNode = liNode.find('a')
-        const link = aNode.attr('href')
+        const link = `${baseUrl}${aNode.attr('href')}`
         const title = aNode.attr('title')
 
         result.recommend.push({ date, link, title })
@@ -137,7 +132,7 @@ const parseMusicDetailHtml = (body) => {
 
     comment.each((i, li) => {
       const liNode = $(li)
-      const avatarLink = liNode.find('a:first img').attr('src')
+      const avatarLink = `${baseUrl}${liNode.find('a:first img').attr('src')}`
 
       const userInfo = liNode.find('.media-body > .small.d-flex')
       const userName = userInfo.find('.username a.text-muted').text()
@@ -156,7 +151,19 @@ const parseMusicDetailHtml = (body) => {
   return result
 }
 
-export const downloadMp3 = async (url) => {
+const fetchPage = async (url) => {
+  const res = await axios.get(url, {
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+      Cookie: cookie_val,
+      Accept: '*/*'
+    }
+  })
+
+  return res.data ?? null
+}
+
+const downloadMp3 = async (url) => {
   dialog.showOpenDialog({ filters: [], properties: ['openDirectory'] }).then(async (result) => {
     const { canceled, filePaths } = result
 
@@ -182,9 +189,18 @@ export const downloadMp3 = async (url) => {
   })
 }
 
+export const encodeSearchUrl = {
+  0: encodeSearchUrl_0
+}
+export const parseSearchHtml = {
+  0: parseSearchHtml_0
+}
+
+export const parseMusicDetailHtml = {
+  0: parseMusicDetailHtml_0
+}
+
 export default {
   fetchPage,
-  parseSearchHtml,
-  parseMusicDetailHtml,
   downloadMp3
 }

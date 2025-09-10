@@ -6,7 +6,6 @@
     />
     <download-music v-if="current === 1" />
     <template v-else>{{ current }}</template>
-    
   </div>
 </template>
 

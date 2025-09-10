@@ -2,9 +2,10 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import './listener/music'
-import { Logger } from './mainLogger'
 
+import './listener'
+import { Logger } from './mainLogger'
+import './electronStore'
 Logger.info('Application is starting')
 
 let mainWindow: BrowserWindow
@@ -19,10 +20,15 @@ function createWindow(): void {
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
-      sandbox: false
+      sandbox: false,
+      nodeIntegration: false
+      // contextIsolation: true
     }
   })
-
+  // mainWindow.webContents.on('did-finish-load', async () => {
+  //   const softwareMode = EStore.get('softwareMode')
+  //   mainWindow.webContents.send('lx.main.store.server.softwareMode', softwareMode)
+  // })
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
 

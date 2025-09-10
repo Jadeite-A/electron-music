@@ -10,6 +10,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     App: typeof import('./App.vue')['default']
     DownloadMusic: typeof import('./views/Music/components/downloadMusic/index.vue')['default']
+    ElBacktop: typeof import('element-plus/es')['ElBacktop']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     ElIcon: typeof import('element-plus/es')['ElIcon']
@@ -17,8 +18,10 @@ declare module 'vue' {
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
+    GlobalSettings: typeof import('./views/GlobalSettings/index.vue')['default']
     Main: typeof import('./views/Main.vue')['default']
     MainPanel: typeof import('./views/MainPanel/index.vue')['default']
+    MainSettings: typeof import('./views/MainSettings/index.vue')['default']
     MainWindow: typeof import('./views/MainWindow.vue')['default']
     Music: typeof import('./views/Music/index.vue')['default']
     MusicDetail: typeof import('./views/Music/components/MusicDetail/index.vue')['default']

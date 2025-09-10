@@ -22,7 +22,7 @@
             <div class="avatar-container">
               <img 
                 class="avatar" 
-                :src="baseUrl + item.avatarLink" 
+                :src="item.avatarLink" 
                 alt=""
               >
             </div>
@@ -61,7 +61,6 @@
 </template>
 
 <script setup lang="ts">
-import Lodash from 'lodash';
 import { Splitpanes, SplitpanesPane } from '@components/splitpanes';
 
 import { sendSearch, sendChoice, sendDownload } from '@/service/music'
@@ -70,7 +69,6 @@ const props = defineProps<{
   type: string
 }>();
 
-const baseUrl = ref('')
 const searchText = ref('');
 const searchRes = ref<any[]>([]);
 // const musicLink = ref('');
@@ -82,23 +80,16 @@ const handleSearch = () => {
 };
 
 window.electron.ipcRenderer.on('ms.main.fetch.page', (_event, data) => {
-  // console.log('🐦‍🔥 data', data);
-  baseUrl.value = data.baseUrl
-  searchRes.value = data.data
+  searchRes.value = data
 });
 
 const musicInfo = ref<any>(null);
 
 const handleChoice = (item) => {
-  const url = `${baseUrl.value}${item.link}`;
-  sendChoice({ url })
+  sendChoice(item.link)
 }
 
 window.electron.ipcRenderer.on('ms.main.fetch.music.info', (_event, data) => {
-  console.log('🐦‍🔥 data', data);
-
-  // const { downloadLink } = data
-  // musicLink.value = downloadLink
   musicInfo.value = data
 });
 

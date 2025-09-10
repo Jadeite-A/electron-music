@@ -19,6 +19,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/video',
     name: 'Video',
     component: () => import(/* webpackChunkName: 'Video' */ '@/views/Video/index.vue')
+  },
+  {
+    path: '/settings',
+    name: 'GlobalSettings',
+    component: () =>
+      import(/* webpackChunkName: 'GlobalSettings' */ '@/views/GlobalSettings/index.vue')
   }
 ]
 

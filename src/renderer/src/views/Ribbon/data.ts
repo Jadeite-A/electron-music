@@ -11,8 +11,8 @@ export default {
       svg: ''
     },
     {
-      name: 'settings',
-      label: '设置',
+      name: 'summary',
+      label: '报告',
       svg: ''
     }
   ]

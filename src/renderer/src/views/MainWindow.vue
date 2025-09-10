@@ -32,6 +32,11 @@ const mainCategory = reactive({
       name: 2,
       path: '/video',
       label: '视频'
+    },
+    {
+      name: 3,
+      path: '/settings',
+      label: '设置'
     }
   ]
 })

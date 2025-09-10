@@ -10,5 +10,6 @@ declare global {
       error: (message: any, data?: any) => void
       warn: (message: any, data?: any) => void
     }
+    eStore: any
   }
 }
